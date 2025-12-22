@@ -1,0 +1,50 @@
+repositories:
+  - name: jetstack
+    url: https://charts.jetstack.io
+  - name: ingress-nginx
+    url: https://kubernetes.github.io/ingress-nginx
+  - name: argo
+    url: https://argoproj.github.io/argo-helm
+  - name: metrics-server
+    url: https://kubernetes-sigs.github.io/metrics-server
+
+releases:
+  - name: metrics-server
+    namespace: kube-system
+    chart: metrics-server/metrics-server
+    version: 3.12.1
+    values:
+      - args:
+          - --kubelet-insecure-tls
+
+  - name: cert-manager
+    namespace: cert-manager
+    chart: jetstack/cert-manager
+    version: 1.16.2
+    createNamespace: true
+    values:
+      - crds:
+          enabled: true
+
+  - name: ingress-nginx
+    namespace: ingress-nginx
+    chart: ingress-nginx/ingress-nginx
+    version: 4.10.1
+    createNamespace: true
+    values:
+      - controller:
+          service:
+            type: LoadBalancer
+
+  - name: argocd
+    namespace: argocd
+    chart: argo/argo-cd
+    version: 7.7.7
+    createNamespace: true
+    values:
+      - configs:
+          cm:
+            kustomize.buildOptions: "--enable-helm"
+      - server:
+          extraArgs:
+            - --disable-auth
