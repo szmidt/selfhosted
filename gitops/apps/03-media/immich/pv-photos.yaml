@@ -1,15 +1,15 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: pv-media
+  name: pv-immich
 spec:
   capacity:
-    storage: 4Ti
+    storage: 2Ti
   accessModes:
     - ReadWriteOnce
-  storageClassName: media
+  storageClassName: photos
   local:
-    path: /var/mnt/media
+    path: /var/mnt/photos
   nodeAffinity:
     required:
       nodeSelectorTerms:

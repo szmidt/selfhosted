@@ -3,6 +3,10 @@ kind: Kustomization
 
 namespace: immich
 
+resources:
+  - class-photos.yaml
+  - pv-photos.yaml
+
 helmCharts:
   - name: immich
     repo: https://immich-app.github.io/immich-charts

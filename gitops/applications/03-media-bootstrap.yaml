@@ -1,10 +1,25 @@
 apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: media
+  namespace: argocd
+spec:
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+---
+apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: immich
   namespace: argocd
 spec:
-  project: platform
+  project: media
   source:
     repoURL: https://github.com/szmidt/selfhosted.git
     targetRevision: main
