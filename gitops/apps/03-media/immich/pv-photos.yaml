@@ -9,7 +9,7 @@ spec:
     - ReadWriteOnce
   storageClassName: photos
   local:
-    path: /tank_media/main
+    path: /var/mnt/media # tank_media
   nodeAffinity:
     required:
       nodeSelectorTerms:
