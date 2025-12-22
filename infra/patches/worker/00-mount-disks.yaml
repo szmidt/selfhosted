@@ -1,0 +1,10 @@
+machine:
+  disks:
+    - device: "/dev/sdc"
+      partitions:
+        - size: 0
+          mountpoint: "/var/mnt/secure"
+    - device: "/dev/sdb"
+      partitions:
+        - size: 0
+          mountpoint: "/var/mnt/media"

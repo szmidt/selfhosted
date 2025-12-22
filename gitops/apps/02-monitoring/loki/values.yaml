@@ -1,0 +1,11 @@
+loki:
+  persistence:
+    enabled: true
+    storageClassName: local-path
+    size: 5Gi
+
+promtail:
+  enabled: true
+
+grafana:
+  enabled: false
