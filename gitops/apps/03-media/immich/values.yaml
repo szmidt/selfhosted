@@ -1,4 +1,4 @@
 immich:
   persistence:
     library:
-      existingClaim: pv-photos
+      existingClaim: pvc-photos
