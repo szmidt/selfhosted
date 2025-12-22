@@ -4,6 +4,7 @@ kind: Kustomization
 namespace: immich
 
 resources:
+  - namespace.yaml
   - class-photos.yaml
   - pv-photos.yaml
 
