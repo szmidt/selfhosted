@@ -17,4 +17,4 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - <worker-node-hostname>
+                - talos-worker-01
