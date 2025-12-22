@@ -67,8 +67,8 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: storage
-  namespace: storage
+  name: argocd
+  namespace: argocd
 spec:
   project: platform
   source:
@@ -77,6 +77,6 @@ spec:
     path: gitops/apps/01-platform/storage
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: storage
   syncPolicy:
     automated: {}
