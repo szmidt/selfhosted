@@ -21,7 +21,7 @@ metadata:
 spec:
   project: platform
   source:
-    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    repoURL: https://github.com/szmidt/selfhosted.git
     targetRevision: main
     path: gitops/apps/01-platform/cert-manager
   destination:
@@ -38,7 +38,7 @@ metadata:
 spec:
   project: platform
   source:
-    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    repoURL: https://github.com/szmidt/selfhosted.git
     targetRevision: main
     path: gitops/apps/01-platform/cilium
   destination:
@@ -55,9 +55,26 @@ metadata:
 spec:
   project: platform
   source:
-    repoURL: https://github.com/SerhiiMyronets/homelab-talos-kubernetes-terraform.git
+    repoURL: https://github.com/szmidt/selfhosted.git
     targetRevision: main
     path: gitops/apps/01-platform/argocd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: storage
+  namespace: storage
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/szmidt/selfhosted.git
+    targetRevision: main
+    path: gitops/apps/01-platform/storage
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
