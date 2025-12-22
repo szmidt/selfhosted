@@ -1,0 +1,5 @@
+resources:
+  - pv-secure.yaml
+  - pv-media.yaml
+  - class-secure.yaml
+  - class-media.yaml
