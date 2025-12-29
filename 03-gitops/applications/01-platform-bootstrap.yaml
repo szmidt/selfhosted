@@ -1,0 +1,82 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: platform
+  namespace: argocd
+spec:
+  sourceRepos:
+    - '*'
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: '*'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/szmidt/selfhosted.git
+    targetRevision: main
+    path: 03-gitops/apps/01-platform/cert-manager
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cilium
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/szmidt/selfhosted.git
+    targetRevision: main
+    path: 03-gitops/apps/01-platform/cilium
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/szmidt/selfhosted.git
+    targetRevision: main
+    path: 03-gitops/apps/01-platform/argocd
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/szmidt/selfhosted.git
+    targetRevision: main
+    path: 03-gitops/apps/01-platform/longhorn
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated: {}

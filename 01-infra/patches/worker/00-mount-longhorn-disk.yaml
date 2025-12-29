@@ -1,0 +1,11 @@
+# This file is defined to mount the longhorn disk on the worker nodes.
+machine:
+  disks:
+    # /dev/sda is the OS disk and should not be modified.
+    # The two 6TB data disks are /dev/sdb and /dev/sdc.
+    - device: /dev/sdb
+      partitions:
+        - mountpoint: /var/mnt/sdb
+    - device: /dev/sdc
+      partitions:
+        - mountpoint: /var/mnt/sdc
