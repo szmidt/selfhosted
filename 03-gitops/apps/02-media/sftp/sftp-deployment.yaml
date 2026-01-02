@@ -16,7 +16,9 @@ spec:
         app: sftp-server
     spec:
       securityContext:
-        fsGroup: 1000
+        fsGroup: 1001
+        runAsUser: 1001
+        runAsGroup: 1001
       containers:
       - name: sftp-server
         image: atmoz/sftp:latest

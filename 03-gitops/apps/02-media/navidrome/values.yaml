@@ -78,4 +78,6 @@ persistence:
     size: 1Gi
 
 podSecurityContext:
-  fsGroup: 1000
+  fsGroup: 1001
+  runAsUser: 1001
+  runAsGroup: 1001
