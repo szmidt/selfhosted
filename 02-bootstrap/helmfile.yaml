@@ -54,7 +54,7 @@ releases:
   - name: longhorn
     namespace: longhorn-system
     chart: longhorn/longhorn
-    version: 1.8.1
+    version: 1.9.1
     createNamespace: false
     values:
       - defaultSettings:

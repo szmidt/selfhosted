@@ -77,6 +77,6 @@ spec:
     path: 03-gitops/apps/01-platform/longhorn
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: longhorn-system
   syncPolicy:
     automated: {}
