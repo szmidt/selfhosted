@@ -75,7 +75,7 @@ persistence:
     mountPath: /music
     storageClass: longhorn
     accessMode: ReadWriteOnce
-    size: 1Gi
+    size: 50Gi
 
 podSecurityContext:
   fsGroup: 1001
