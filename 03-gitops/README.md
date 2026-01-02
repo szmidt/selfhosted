@@ -75,9 +75,7 @@ kubectl apply -f applications/01-platform-bootstrap.yaml
 SFTP secret:
 
 ```bash
-kubectl create secret generic sftp-user-credentials \
-     --namespace=media \
-     --from-literal=SFTP_USERS="root:<password>:0:0"
+kubectl create secret generic sftp-user-credentials    --namespace=media    --from-literal=SFTP_USERS="olaf:password:::music"
 ```
 ## Navigation
 
