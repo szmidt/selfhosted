@@ -4,6 +4,11 @@ metadata:
   name: talos-worker-01
 spec:
   disks:
+    default:
+      allowScheduling: false
+      diskType: filesystem
+      path: /var/lib/longhorn
+      tags: [ ]
     disk-sdb:
       path: /var/mnt/sdb
       allowScheduling: true
