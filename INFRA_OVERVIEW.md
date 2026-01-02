@@ -6,6 +6,36 @@ This document provides a high-level overview of the infrastructure managed in th
 
 The primary goal of this setup is to use Terraform to automatically provision a production-ready Talos-based Kubernetes cluster on a Proxmox VE hypervisor. This approach is known as "Infrastructure as Code" (IaC), which allows for repeatable and version-controlled infrastructure.
 
+## Architecture
+
+The high-level architecture of the setup is as follows:
+
+```
+┌───────────────────────────────────────────────────┐
+│                    Proxmox Host                   │
+│ ┌─────────────────┐         ┌───────────────────┐ │
+│ │ talos-cp-01 (VM)│         │ talos-wk-01 (VM)  │ │
+│ │ 192.168.100.60  │         │  192.168.100.70   │ │
+│ └───────┬─────────┘         └─────────┬─────────┘ │
+└─────────┼─────────────────────────────┼───────────┘
+          │                             │
+          │     Kubernetes Cluster      │
+          │                             │
+┌─────────┴─────────────────────────────┴──────────┐
+│ ┌──────────────────────────────────────────────┐ │
+│ │      In-Cluster Services & Applications      │ │
+│ │ ┌────────────┐ ┌──────────┐ ┌──────────────┐ │ │
+│ │ │  Longhorn  │ │ Ingress  │ │   ArgoCD     │ │ │
+│ │ │ (Storage)  │ │ (Network)│ │   (GitOps)   │ │ │
+│ │ └────────────┘ └──────────┘ └──────────────┘ │ │
+│ │ ┌────────────┐ ┌──────────┐ ┌──────────────┐ │ │
+│ │ │ Cert-Mgr   │ │  Media   │ │  Monitoring  │ │ │
+│ │ │  (TLS)     │ │ (Navi..) │ │ (Metrics)    │ │ │
+│ │ └────────────┘ └──────────┘ └──────────────┘ │ │
+│ └──────────────────────────────────────────────┘ │
+└──────────────────────────────────────────────────┘
+```
+
 ## Core Components
 
 1.  **Terraform:** The orchestration tool used to define and manage the lifecycle of all infrastructure resources. The configuration files (`.tf`) in the `infra/` directory describe the desired state of the system.

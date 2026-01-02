@@ -26,7 +26,24 @@ spec:
     path: 03-gitops/apps/02-media/navidrome
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: media
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sftp-server
+  namespace: argocd
+spec:
+  project: media
+  source:
+    repoURL: https://github.com/szmidt/selfhosted.git
+    targetRevision: main
+    path: 03-gitops/apps/02-media/sftp
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: media
   syncPolicy:
     automated: {}
 ---

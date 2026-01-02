@@ -51,3 +51,13 @@ This homelab setup uses two separate networks on the Proxmox host: a main LAN fo
   - Talos VMs have internet access via NAT
   - Workstations can reach Talos nodes via the static route
 
+### Assigned IP Addresses
+
+The following static IP addresses are assigned from the `192.168.100.0/24` subnet, as defined in `01-infra/variables.tf`.
+
+| Role                       | IP Address          | Description                               |
+| -------------------------- | ------------------- | ----------------------------------------- |
+| Control Plane Node         | `192.168.100.60`    | `talos-controlplane-01`                   |
+| Worker Node                | `192.168.100.70`    | `talos-worker-01`                         |
+| Kubernetes VIP             | `192.168.100.50`    | Virtual IP for the Kubernetes API server. |
+| Ingress Load Balancer Pool | `192.168.100.80-85` | Range available for LoadBalancer services. |

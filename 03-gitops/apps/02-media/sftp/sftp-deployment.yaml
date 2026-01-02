@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sftp-server
+  namespace: media
+  labels:
+    app: sftp-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sftp-server
+  template:
+    metadata:
+      labels:
+        app: sftp-server
+    spec:
+      containers:
+      - name: sftp-server
+        image: atmoz/sftp:latest
+        ports:
+        - containerPort: 22
+        envFrom:
+        - secretRef:
+            name: sftp-user-credentials
+        volumeMounts:
+        - name: sftp-volume
+          mountPath: /home/root/music
+      volumes:
+      - name: sftp-volume
+        persistentVolumeClaim:
+          claimName: pvc-c93f652b-8249-4a83-8e39-5d508fb0888a
