@@ -25,7 +25,7 @@ spec:
             name: sftp-user-credentials
         volumeMounts:
         - name: sftp-volume-music
-          mountPath: /home/root/music
+          mountPath: /home/olaf/music
       volumes:
       - name: sftp-volume-music
         persistentVolumeClaim:
