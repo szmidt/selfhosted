@@ -65,8 +65,14 @@ ingress:
 # @default -- See values.yaml
 persistence:
   config:
-    enabled: false
+    enabled: true
     mountPath: /data
+    storageClass: longhorn
+    accessMode: ReadWriteOnce
+    size: 250Mi
   music:
-    enabled: false
+    enabled: true
     mountPath: /music
+    storageClass: longhorn
+    accessMode: ReadWriteOnce
+    size: 1Gi
