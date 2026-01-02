@@ -7,8 +7,8 @@ spec:
     disk-sdb:
       path: /var/mnt/sdb
       allowScheduling: true
-      storageReserved: 32212254720 # 30Gi
+      storageReserved: 0
     disk-sdc:
       path: /var/mnt/sdc
       allowScheduling: true
-      storageReserved: 32212254720 # 30Gi
+      storageReserved: 0
