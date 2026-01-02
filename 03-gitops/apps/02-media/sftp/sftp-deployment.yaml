@@ -24,9 +24,9 @@ spec:
         - secretRef:
             name: sftp-user-credentials
         volumeMounts:
-        - name: sftp-volume
+        - name: sftp-volume-music
           mountPath: /home/root/music
       volumes:
-      - name: sftp-volume
+      - name: sftp-volume-music
         persistentVolumeClaim:
           claimName: navidrome-music
