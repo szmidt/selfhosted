@@ -4,14 +4,11 @@ metadata:
   name: talos-worker-01
 spec:
   disks:
-    default:
-      path: /var/lib/longhorn
-      allowScheduling: false
     disk-sdb:
       path: /var/mnt/sdb
       allowScheduling: true
-      storageReserved: 0
+      storageReserved: 32212254720 # 30Gi
     disk-sdc:
       path: /var/mnt/sdc
       allowScheduling: true
-      storageReserved: 0
+      storageReserved: 32212254720 # 30Gi
