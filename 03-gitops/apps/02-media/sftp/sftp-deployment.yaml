@@ -29,4 +29,4 @@ spec:
       volumes:
       - name: sftp-volume
         persistentVolumeClaim:
-          claimName: pvc-c93f652b-8249-4a83-8e39-5d508fb0888a
+          claimName: navidrome-music
