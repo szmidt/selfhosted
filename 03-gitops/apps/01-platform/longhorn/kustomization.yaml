@@ -3,3 +3,11 @@ kind: Kustomization
 resources:
   - longhorn-ingress.yaml
   - longhorn-node-disks-patch.yaml
+
+patches:
+- path: longhorn-node-disks-patch.yaml
+  target:
+    group: longhorn.io
+    version: v1beta1
+    kind: Node
+    name: talos-worker-01
