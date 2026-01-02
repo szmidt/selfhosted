@@ -58,9 +58,6 @@ It is recommended to apply the Argo CD Applications in order, as each layer buil
 ```bash
 # 1. Apply platform components
 kubectl apply -f applications/01-platform-bootstrap.yaml
-
-# 2. Apply observability stack
-kubectl apply -f applications/02-monitoring-bootstrap.yaml
 ```
 
 ### Application breakdown
