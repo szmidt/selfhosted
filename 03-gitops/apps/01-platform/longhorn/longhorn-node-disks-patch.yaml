@@ -6,6 +6,7 @@ spec:
   disks:
     default-disk-080600000000:
       allowScheduling: false
+      storageReserved: 20145242112 # Reserve the entire disk
     disk-sdb:
       path: /var/mnt/sdb
       allowScheduling: true
