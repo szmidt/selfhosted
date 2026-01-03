@@ -7,6 +7,7 @@ metadata:
     app: sftp-server
 spec:
   type: LoadBalancer
+  loadBalancerIP: 192.168.100.81
   selector:
     app: sftp-server
   ports:
