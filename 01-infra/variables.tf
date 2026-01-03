@@ -22,6 +22,12 @@ variable "proxmox_password" {
 // Global Cluster Settings
 // ==============================================================================
 
+variable "proxmox_host_lan_ip" {
+  description = "The IP address of the Proxmox host on the main LAN."
+  type        = string
+  default     = "192.168.1.55"
+}
+
 variable "cluster_name" {
   description = "The name of the Kubernetes cluster. Used in resource naming."
   type        = string
