@@ -18,23 +18,3 @@ spec:
                 name: navidrome
                 port:
                   number: 4533
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: navidrome-path
-  namespace: media
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  ingressClassName: nginx
-  rules:
-    - http:
-        paths:
-          - path: /navidrome
-            pathType: Prefix
-            backend:
-              service:
-                name: navidrome
-                port:
-                  number: 4533
