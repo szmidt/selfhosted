@@ -50,6 +50,8 @@ releases:
       - server:
           extraArgs:
             - --disable-auth
+            - --basehref
+            - /argocd
 
   - name: longhorn
     namespace: longhorn-system

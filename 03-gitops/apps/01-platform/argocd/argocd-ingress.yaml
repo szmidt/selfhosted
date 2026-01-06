@@ -30,6 +30,7 @@ metadata:
   name: argocd-server-ui-path
   namespace: argocd
   annotations:
+    cert-manager.io/cluster-issuer: ingress
     nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
@@ -44,3 +45,7 @@ spec:
                 name: argocd-server
                 port:
                   number: 443
+  tls:
+    - hosts:
+        - argocd.cluster
+      secretName: argocd-server-tls
