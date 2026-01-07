@@ -29,7 +29,7 @@ Before running this stage, make sure you have:
 To apply the bootstrap components:
 
 ```bash
-helmfile apply
+TS_OAUTH_CLIENT_ID="ts-client" TS_OAUTH_CLIENT_SECRET="tskey-secret" helmfile apply
 ```
 
 This command installs all defined charts with their default or overridden configurations.
