@@ -4,6 +4,7 @@ kind: Kustomization
 resources:
   - namespace.yaml
   - navidrome-ingress.yaml
+  - ts-service.yaml
 
 namespace: media
 

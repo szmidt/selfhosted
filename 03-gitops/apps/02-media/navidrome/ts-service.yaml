@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: navidrome-ts
+  namespace: media
+  annotations:
+    tailscale.com/expose: "true"
+    tailscale.com/expose-dnsname: "navidrome.media.tailscale.net"
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/instance: navidrome
+    app.kubernetes.io/name: navidrome
+  ports:
+    - name: http
+      port: 4533
+      targetPort: http
