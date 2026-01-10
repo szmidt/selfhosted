@@ -4,10 +4,10 @@ metadata:
   name: navidrome-ts
   namespace: media
   annotations:
-    tailscale.com/expose: "true"
-    tailscale.com/expose-dnsname: "navidrome.media.tailscale.net"
+    tailscale.com/hostname: "navidrome"
 spec:
-  type: ClusterIP
+  type: LoadBalancer
+  loadBalancerClass: tailscale
   selector:
     app.kubernetes.io/instance: navidrome
     app.kubernetes.io/name: navidrome
