@@ -3,6 +3,7 @@ persistence:
     enabled: true
     storageClass: longhorn
     size: 3Gi
-  music:
+  media:
     enabled: true
-    storageClass: longhorn
+    existingClaim: shared-media
+    mountPath: /media

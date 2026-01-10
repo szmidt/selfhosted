@@ -26,9 +26,9 @@ spec:
         - secretRef:
             name: sftp-user-credentials
         volumeMounts:
-        - name: sftp-volume-music
-          mountPath: /home/olaf/music
+        - name: shared-media
+          mountPath: /home/olaf/media
       volumes:
-      - name: sftp-volume-music
+      - name: shared-media
         persistentVolumeClaim:
-          claimName: navidrome-music
+          claimName: shared-media
