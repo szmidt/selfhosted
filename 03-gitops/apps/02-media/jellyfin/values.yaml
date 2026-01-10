@@ -1,0 +1,7 @@
+persistence:
+  music:
+    enabled: true
+    mountPath: /media
+    storageClass: longhorn
+    accessMode: ReadWriteOnce
+    size: 800Gb
