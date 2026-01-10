@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: media
 
+resources:
+  - jellyfin-tailscale-ingress.yaml
+
 helmCharts:
   - name: jellyfin
     repo: https://jellyfin.github.io/jellyfin-helm
