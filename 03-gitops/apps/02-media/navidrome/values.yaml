@@ -72,10 +72,8 @@ persistence:
     size: 250Mi
   music:
     enabled: true
+    existingClaim: shared-media
     mountPath: /music
-    storageClass: longhorn
-    accessMode: ReadWriteOnce
-    size: 50Gi
 
 podSecurityContext:
   fsGroup: 1001
