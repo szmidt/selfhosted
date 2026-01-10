@@ -3,4 +3,4 @@ persistence:
     enabled: true
     storageClass: longhorn
     accessMode: ReadWriteOnce
-    size: 800Gb
+    size: 800Gi
