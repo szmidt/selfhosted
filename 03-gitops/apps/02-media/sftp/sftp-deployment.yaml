@@ -28,7 +28,12 @@ spec:
         volumeMounts:
         - name: shared-media
           mountPath: /home/olaf/media
+        - name: navidrome-music
+          mountPath: /home/olaf/music
       volumes:
       - name: shared-media
         persistentVolumeClaim:
           claimName: shared-media
+      - name: navidrome-music
+        persistentVolumeClaim:
+          claimName: navidrome-music
