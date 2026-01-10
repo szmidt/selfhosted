@@ -28,12 +28,12 @@ spec:
         volumeMounts:
         - name: shared-media
           mountPath: /home/olaf/media
-        - name: navidrome-music
+        - name: navidrome-music # deprected - use shared-media in the future
           mountPath: /home/olaf/music
       volumes:
       - name: shared-media
         persistentVolumeClaim:
           claimName: shared-media
-      - name: navidrome-music
+      - name: navidrome-music # deprected - use shared-media in the future
         persistentVolumeClaim:
           claimName: navidrome-music
