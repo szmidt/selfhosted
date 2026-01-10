@@ -1,2 +1,3 @@
 resources:
   - argocd-ingress.yaml
+  - argocd-tailscale-ingress.yaml

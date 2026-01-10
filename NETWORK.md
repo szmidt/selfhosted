@@ -106,6 +106,135 @@ The following static IP addresses are assigned from the `192.168.100.0/24` subne
 
 ---
 
+## Tailscale Integration
+
+Tailscale operator is deployed in the `tailscale` namespace and provides secure access to cluster services via the tailnet. This complements the existing LAN access method by providing secure, certificate-based access from anywhere.
+
+### Tailscale Ingress Configuration
+
+Services are exposed to the tailnet using Tailscale Ingress resources. This provides automatic HTTPS certificates and secure access without exposing services to the public internet.
+
+**Example Tailscale Ingress:**
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: navidrome-tailscale
+  namespace: media
+spec:
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - navidrome
+  defaultBackend:
+    service:
+      name: navidrome
+      port:
+        number: 4533
+```
+
+**Key Points:**
+- `ingressClassName: tailscale` - Uses Tailscale operator
+- `tls.hosts: ["servicename"]` - Sets hostname (becomes `servicename.tailce4610.ts.net`)
+- `defaultBackend` - Points to the internal service
+- HTTPS certificates are automatically provisioned
+- Requires HTTPS enabled on tailnet in admin console
+
+### Access Methods
+
+#### Tailnet Access (Secure, from anywhere)
+Services are accessible via: `https://servicename.tailce4610.ts.net`
+
+Current services:
+- Navidrome: `https://navidrome.tailce4610.ts.net` ✅
+- ArgocD: `https://argocd.tailce4610.ts.net` ✅
+- Longhorn: `https://longhorn.tailce4610.ts.net` ✅
+
+All services have been successfully configured with Tailscale ingress and are accessible via HTTPS with automatic certificates.
+
+#### Internal Cluster Access (Within cluster)
+Services also have internal ingress resources using `ingressClassName: nginx` for access within the cluster.
+
+**Example Internal Ingress:**
+```yaml
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: navidrome
+  namespace: media
+  annotations:
+    cert-manager.io/cluster-issuer: ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: navidrome.cluster
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: navidrome
+                port:
+                  number: 4533
+```
+
+#### LAN Access (From local network)
+Traditional access via Proxmox host NAT forwarding (as documented in previous sections):
+- Navidrome: `http://navidrome.cluster` (via DNS + NAT)
+
+### Prerequisites for Tailscale Ingress
+
+1. **Tailscale Operator**: Deployed via Helm in `tailscale` namespace
+2. **OAuth Client**: Configured with proper scopes (`Devices Core`, `Auth Keys`, `Services`)
+3. **HTTPS Enabled**: Must be enabled in Tailscale admin console
+4. **MagicDNS**: Enabled for automatic DNS resolution
+
+### Troubleshooting Tailscale
+
+**Common Issues:**
+
+1. **HTTPS Not Enabled**: Check admin console, required for Tailscale ingress
+2. **Proxy Pod Not Running**: Check `tailscale` namespace for proxy pods
+3. **Service Not Accessible**: Verify service endpoints and proxy pod logs
+4. **DNS Resolution**: Ensure MagicDNS is enabled
+
+**Useful Commands:**
+
+```bash
+# Check Tailscale ingress status
+kubectl get ingress -A | grep tailscale
+
+# Check proxy pods
+kubectl get pods -n tailscale -l "tailscale.com/parent-resource-type=ingress"
+
+# Check proxy pod logs
+kubectl logs -n tailscale ts-servicename-ingress-xxx-0
+
+# Describe ingress for details
+kubectl describe ingress servicename-tailscale -n namespace
+```
+
+### Service Configuration Pattern
+
+For each service that needs tailnet access:
+
+1. Create Tailscale ingress resource in service namespace
+2. Use pattern: `servicename-tailscale` for ingress name
+3. Point to existing internal service
+4. Add to kustomization.yaml resources
+5. Keep existing nginx ingress for internal cluster access
+6. Continue using LAN access method for local users
+
+### LoadBalancer Alternative
+
+LoadBalancer services can also be used with `loadBalancerClass: tailscale`, but ingress method is preferred for:
+- Automatic HTTPS certificates
+- Better resource management  
+- Easier DNS configuration
+
+---
+
 ### Future Network Architecture (With Custom Router)
 
 The current setup relies on the Proxmox host to perform routing and NAT via `iptables`, which is complex and centralizes network management on the hypervisor. The future plan is to delegate these responsibilities to a dedicated custom router.
