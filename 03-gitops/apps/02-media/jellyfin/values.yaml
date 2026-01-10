@@ -2,8 +2,7 @@ persistence:
   config:
     enabled: true
     storageClass: longhorn
-    size: 1Gi
+    size: 3Gi
   music:
     enabled: true
     storageClass: longhorn
-    size: 800Gi
