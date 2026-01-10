@@ -1,6 +1,9 @@
 persistence:
+  config:
+    enabled: true
+    storageClass: longhorn
+    size: 1Gi
   music:
     enabled: true
     storageClass: longhorn
-    accessMode: ReadWriteOnce
     size: 800Gi
