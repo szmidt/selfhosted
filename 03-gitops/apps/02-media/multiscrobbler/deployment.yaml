@@ -18,6 +18,9 @@ spec:
       containers:
         - name: multi-scrobbler
           image: foxxmd/multi-scrobbler:latest
+          ports:
+            - containerPort: 9078
+              name: http
           envFrom:
             - secretRef:
                 name: multiscrobbler-lastfm-creds
