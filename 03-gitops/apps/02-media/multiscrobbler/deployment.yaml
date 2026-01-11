@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: multi-scrobbler
-          image: multi-scrobbler:latest
+          image: foxxmd/multi-scrobbler:latest
           envFrom:
             - secretRef:
                 name: multiscrobbler-lastfm-creds
