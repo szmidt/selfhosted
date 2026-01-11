@@ -82,12 +82,15 @@ kubectl create secret generic sftp-user-credentials    --namespace=media    --fr
 #### Multiscrobbler
 Last.fm credentials are required for scrobbling. Create the secret with your actual Last.fm API credentials:
 
+Go in the browser and hit `https://www.last.fm/api/auth?api_key=api_key&token=api_secret`.
+
+Then create:
+
 ```bash
 kubectl create secret generic multiscrobbler-lastfm-creds \
   --namespace=media \
-  --from-literal=LASTFM_API_KEY="your_lastfm_api_key_here" \
-  --from-literal=LASTFM_SECRET="your_lastfm_secret_here" \
-  --from-literal=BASE_URL="http://192.168.1.100:9078"
+  --from-literal=LASTFM_API_KEY="api_key" \
+  --from-literal=LASTFM_SECRET="api_secret"
 ```
 
 Replace the placeholder values with your actual Last.fm API key and secret obtained from https://www.last.fm/api/account/create

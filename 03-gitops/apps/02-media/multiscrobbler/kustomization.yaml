@@ -6,3 +6,4 @@ resources:
   - ingress.yaml
   - tailscale-service.yaml
   - tailscale-ingress.yaml
+  - pvc.yaml

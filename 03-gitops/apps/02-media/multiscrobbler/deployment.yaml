@@ -24,3 +24,10 @@ spec:
           envFrom:
             - secretRef:
                 name: multiscrobbler-lastfm-creds
+          volumeMounts:
+            - name: config
+              mountPath: /config
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: multiscrobbler-config
