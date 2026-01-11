@@ -26,10 +26,7 @@ spec:
                 name: multiscrobbler-lastfm-creds
           env:
             - name: LZE_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: multiscrobbler-lastfm-creds
-                  key: myVeryCoolLzeToken
+              value: "myVeryCoolToken"
           volumeMounts:
             - name: config
               mountPath: /config
