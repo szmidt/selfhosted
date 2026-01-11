@@ -72,11 +72,26 @@ kubectl apply -f applications/01-platform-bootstrap.yaml
 
   * Adds Navidrome for music management.
 
-SFTP secret:
+### Secrets 
 
+#### SFTP
 ```bash
 kubectl create secret generic sftp-user-credentials    --namespace=media    --from-literal=SFTP_USERS="olaf:password:1001:1001:music"
 ```
+
+#### Multiscrobbler
+Last.fm credentials are required for scrobbling. Create the secret with your actual Last.fm API credentials:
+
+```bash
+kubectl create secret generic multiscrobbler-lastfm-creds \
+  --namespace=media \
+  --from-literal=LASTFM_API_KEY="your_lastfm_api_key_here" \
+  --from-literal=LASTFM_SECRET="your_lastfm_secret_here" \
+  --from-literal=BASE_URL="http://192.168.1.100:9078"
+```
+
+Replace the placeholder values with your actual Last.fm API key and secret obtained from https://www.last.fm/api/account/create
+
 ## Navigation
 
 [← 02-bootstrap](../02-bootstrap/README.md) • [↑ Main project README](../README.md)

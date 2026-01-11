@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multiscrobbler
+  namespace: media
+  labels:
+    app: multiscrobbler
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: multiscrobbler
+  template:
+    metadata:
+      labels:
+        app: multiscrobbler
+    spec:
+      containers:
+        - name: multi-scrobbler
+          image: multi-scrobbler:latest
+          envFrom:
+            - secretRef:
+                name: multiscrobbler-lastfm-creds

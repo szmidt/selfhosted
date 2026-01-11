@@ -29,6 +29,8 @@ env:
   ND_PROMETHEUS_ENABLED: "false"
   # -- Enable sharing
   ND_ENABLESHARING: "false"
+  # -- Enable ListenBrainz scrobbling to multi-scrobbler
+  ND_LISTENBRAINZ_BASEURL: http://192.168.1.100:9078/1/
 
 # -- Configures service settings for the chart.
 # @default -- See values.yaml
