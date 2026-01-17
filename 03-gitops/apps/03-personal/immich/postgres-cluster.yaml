@@ -1,0 +1,16 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: immich-postgres
+  namespace: personal
+spec:
+  instances: 1
+  storage:
+    size: 20Gi
+  bootstrap:
+    initdb:
+      database: immich
+      owner: immich
+  postgresql:
+    parameters:
+      shared_buffers: 512MB
