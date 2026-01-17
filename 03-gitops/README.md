@@ -57,6 +57,12 @@ kubectl apply -f applications/01-platform-bootstrap.yaml
 
 Below secrets are required for services to work correctly.
 
+#### Immich
+
+Immich requires a PostgreSQL database with the `vector` extension. This is deployed using the `cloudnative-pg` operator.
+
+The `cloudnative-pg` operator will automatically create the necessary secrets for the database. The application is configured to use the `immich-postgres-superuser` secret, which is created by the operator. **No manual secret creation is required for Immich.**
+
 #### SFTP
 
 Define any password.

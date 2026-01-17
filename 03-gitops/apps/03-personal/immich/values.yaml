@@ -18,10 +18,10 @@ controllers:
           DB_USERNAME:
             valueFrom:
               secretKeyRef:
-                name: immich-postgres-app
+                name: immich-postgres-superuser
                 key: username
           DB_PASSWORD:
             valueFrom:
               secretKeyRef:
-                name: immich-postgres-app
+                name: immich-postgres-superuser
                 key: password
