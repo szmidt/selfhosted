@@ -13,8 +13,8 @@ controllers:
         image:
           tag: v2.0.0
         env:
-          DB_HOSTNAME: "immich-postgres-rw"
-          DB_DATABASE_NAME: "immich"
+          DB_HOST: "immich-postgres-rw"
+          DB_DATABASE: "immich"
           DB_USERNAME:
             valueFrom:
               secretKeyRef:
