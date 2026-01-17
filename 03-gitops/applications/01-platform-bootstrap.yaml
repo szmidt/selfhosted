@@ -80,3 +80,22 @@ spec:
     namespace: longhorn-system
   syncPolicy:
     automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cpng
+  namespace: argocd
+spec:
+  project: platform
+  source:
+    repoURL: https://github.com/szmidt/selfhosted.git
+    targetRevision: main
+    path: 03-gitops/apps/01-platform/cpng
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cpng
+  syncPolicy:
+    automated: {}
+    syncOptions:
+      - ServerSideApply=true
