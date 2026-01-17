@@ -4,7 +4,7 @@ kind: Kustomization
 namespace: personal
 
 helmCharts:
-  - name: cpng
+  - name: cloudnative-pg
     repo: https://cloudnative-pg.github.io/charts
     version: 0.27.0
     releaseName: cloudnative-pg
