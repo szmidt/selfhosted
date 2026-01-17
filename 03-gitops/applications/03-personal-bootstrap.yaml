@@ -23,7 +23,7 @@ spec:
   source:
     repoURL: https://github.com/szmidt/selfhosted.git
     targetRevision: main
-    path: 03-gitops/apps/03-media/immich
+    path: 03-gitops/apps/03-personal/immich
   destination:
     server: https://kubernetes.default.svc
     namespace: personal
