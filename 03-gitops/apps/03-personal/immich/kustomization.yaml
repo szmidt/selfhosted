@@ -6,6 +6,7 @@ namespace: media
 resources:
   - immich-pvc.yaml
   - immich-tailscale-ingress.yaml
+  - postgres.yaml
 
 helmCharts:
   - name: immich

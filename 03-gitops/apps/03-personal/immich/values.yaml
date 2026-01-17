@@ -2,3 +2,26 @@ immich:
   persistence:
     library:
       existingClaim: immich-data
+
+valkey:
+  enabled: true
+
+controllers:
+  main:
+    containers:
+      main:
+        image:
+          tag: v2.0.0
+        env:
+          DB_HOST: "immich-postgres-rw"
+          DB_DATABASE: "postgres"
+          DB_USERNAME:
+            valueFrom:
+              secretKeyRef:
+                name: immich-db-superuser
+                key: username
+          DB_PASSWORD:
+            valueFrom:
+              secretKeyRef:
+                name: immich-db-superuser
+                key: password
