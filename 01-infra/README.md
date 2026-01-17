@@ -64,6 +64,10 @@ NAME                    STATUS   ROLES           AGE     VERSION
 
 Once the cluster is up, you can visually confirm successful provisioning:
 
+### NIC e1000e offloading fix
+
+Run this: https://community-scripts.github.io/ProxmoxVE/scripts?id=nic-offloading-fix
+
 ### Proxmox VM view
 
 This screenshot shows Talos VMs created in the Proxmox Virtual Environment, including control plane and worker nodes with their assigned IPs and resource allocations.
