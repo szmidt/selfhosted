@@ -18,10 +18,12 @@ controllers:
           DB_USERNAME:
             valueFrom:
               secretKeyRef:
-                name: immich-postgres-superuser
+                name: immich-postgres-app
                 key: username
           DB_PASSWORD:
             valueFrom:
               secretKeyRef:
-                name: immich-postgres-superuser
+                name: immich-postgres-app
                 key: password
+          REDIS_HOSTNAME: "immich-valkey"
+          IMMICH_MACHINE_LEARNING_URL: "http://immich-machine-learning:3003"
