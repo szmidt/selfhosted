@@ -65,7 +65,7 @@ The `cloudnative-pg` operator automatically creates a superuser secret, but Immi
 
 ```bash
 kubectl create secret generic immich-postgres-user \
-  --namespace=immich \
+  --namespace=personal \
   --from-literal=DB_USERNAME="immich" \
   --from-literal=DB_DATABASE_NAME="immich" \
   --from-literal=DB_PASSWORD="immich" \
