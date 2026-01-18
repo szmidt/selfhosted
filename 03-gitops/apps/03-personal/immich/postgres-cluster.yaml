@@ -7,12 +7,9 @@ spec:
   imageName: ghcr.io/tensorchord/cloudnative-vectorchord:16.9-0.4.3
   instances: 1
   enableSuperuserAccess: true
-  storage:
-    size: 20Gi
   postgresql:
-    parameters:
-      shared_buffers: 512MB
-      shared_preload_libraries: "vchord.so"
+    shared_preload_libraries:
+      - "vectors.so"
   managed:
     roles:
       - name: immich
@@ -27,7 +24,13 @@ spec:
     initdb:
       database: immich
       owner: immich
+      secret:
+        name: immich-postgres-user
       postInitSQL:
-        - CREATE EXTENSION IF NOT EXISTS "vchord" CASCADE;
+        - CREATE EXTENSION IF NOT EXISTS "vectors";
         - CREATE EXTENSION IF NOT EXISTS "cube" CASCADE;
         - CREATE EXTENSION IF NOT EXISTS "earthdistance" CASCADE;
+
+  storage:
+    size: 500Gi
+    storageClass: longhorn
