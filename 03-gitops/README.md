@@ -61,7 +61,19 @@ Below secrets are required for services to work correctly.
 
 Immich requires a PostgreSQL database with the `vector` extension. This is deployed using the `cloudnative-pg` operator.
 
-The `cloudnative-pg` operator will automatically create the necessary secrets for the database. The application is configured to use the `immich-postgres-superuser` secret, which is created by the operator. **No manual secret creation is required for Immich.**
+The `cloudnative-pg` operator automatically creates a superuser secret, but Immich requires an application user secret with specific field names. Create this secret manually:
+
+```bash
+kubectl create secret generic immich-postgres-user \
+  --namespace=immich \
+  --from-literal=DB_USERNAME="immich" \
+  --from-literal=DB_DATABASE_NAME="immich" \
+  --from-literal=DB_PASSWORD="immich" \
+  --from-literal=username="immich" \
+  --from-literal=password="immich"
+```
+
+**Important**: Replace `"immich"` password values with a secure password for production use. The database user will be created by the CloudNativePG operator using the credentials from this secret.
 
 #### SFTP
 
