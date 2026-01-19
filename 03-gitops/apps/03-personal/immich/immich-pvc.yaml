@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: immich-data
   namespace: personal
- spec:
+spec:
   accessModes:
     - ReadWriteOnce
   storageClassName: longhorn
