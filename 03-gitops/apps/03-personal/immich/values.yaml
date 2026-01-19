@@ -12,19 +12,11 @@ valkey:
   enabled: true
 
 env:
+  REDIS_HOSTNAME: "immich-valkey"
   DB_HOSTNAME: "immich-postgres-rw"
   DB_DATABASE_NAME: "immich"
-  DB_USERNAME:
-    valueFrom:
-      secretKeyRef:
-        name: immich-postgres-user
-        key: username
-  DB_PASSWORD:
-    valueFrom:
-      secretKeyRef:
-        name: immich-postgres-user
-        key: password
-  REDIS_HOSTNAME: "immich-valkey"
+  DB_USERNAME: "immich"
+  DB_PASSWORD: "immich"
   IMMICH_MACHINE_LEARNING_URL: "http://immich-machine-learning:3003"
 
 controllers:
