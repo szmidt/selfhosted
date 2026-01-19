@@ -1,7 +1,12 @@
 immich:
   persistence:
     library:
-      existingClaim: immich-data
+      existingClaim: immich-library-pvc
+
+machine-learning:
+  persistence:
+    cache:
+      existingClaim: immich-ml-pvc
 
 valkey:
   enabled: true
