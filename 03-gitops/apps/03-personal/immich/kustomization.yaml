@@ -6,7 +6,7 @@ namespace: personal
 resources:
   - personal-ns.yaml # we need to move this out (and other namespace definitions into platform?)
   - postgres-cluster.yaml
-  - immich-pvc.yaml
+  - storage.yaml
 
 helmCharts:
   - name: immich
