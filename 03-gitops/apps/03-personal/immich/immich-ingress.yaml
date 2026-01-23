@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: immich
+  namespace: personal
+  annotations:
+    cert-manager.io/cluster-issuer: ingress
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: immich.cluster
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: immich-server
+                port:
+                  number: 2283

@@ -7,6 +7,8 @@ resources:
   - personal-ns.yaml # we need to move this out (and other namespace definitions into platform?)
   - postgres-cluster.yaml
   - storage.yaml
+  - immich-ingress.yaml
+  - immich-tailscale-ingress.yaml
 
 helmCharts:
   - name: immich
