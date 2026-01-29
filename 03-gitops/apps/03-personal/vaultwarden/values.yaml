@@ -1,9 +1,5 @@
 # Vaultwarden setup using CloudNativePG for LAN/Tailscale access
 
-# Use Service type ClusterIP (no ingress needed for LAN)
-# Access via: http://vaultwarden.personal.svc.cluster.local:8080
-# Or via Tailscale if you set up service exposure
-
 service:
   type: ClusterIP
   port: 8080
