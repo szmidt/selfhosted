@@ -5,6 +5,7 @@ namespace: personal
 
 resources:
   - postgres-cluster.yaml
+  - vaultwarden-tailscale-ingress.yaml
 
 helmCharts:
   - name: vaultwarden

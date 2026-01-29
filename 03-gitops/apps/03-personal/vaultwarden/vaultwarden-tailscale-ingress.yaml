@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vaultwarden-tailscale
+  namespace: personal
+spec:
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - vaultwarden
+  defaultBackend:
+    service:
+      name: vaultwarden
+      port:
+        number: 8080
