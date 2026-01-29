@@ -27,7 +27,8 @@ storage:
     name: "vaultwarden-data"
     size: "5Gi"
     class: "longhorn"
-    accessModes: ["ReadWriteOnce"]
+    accessModes:
+      - ReadWriteOnce
 
 # Admin token - using existing secret
 adminToken:
