@@ -1,0 +1,50 @@
+# Vaultwarden setup using CloudNativePG for LAN/Tailscale access
+
+# Use Service type ClusterIP (no ingress needed for LAN)
+# Access via: http://vaultwarden.personal.svc.cluster.local:8080
+# Or via Tailscale if you set up service exposure
+
+service:
+  type: ClusterIP
+  port: 8080
+
+# Domain setting for LAN - use local service address
+domain: "http://vaultwarden.personal.svc.cluster.local:8080"
+
+# Database configuration - using CloudNativePG with existing secret
+database:
+  type: "postgresql"
+  host: "vaultwarden-postgres-rw"  # CloudNativePG creates this service
+  port: "5432"
+  # Use existing secret instead of plain text
+  existingSecret: "vaultwarden-postgres-user"
+  existingSecretUserKey: "username"  # or "DB_USERNAME"
+  existingSecretPasswordKey: "password"  # or "DB_PASSWORD"
+
+# Storage for attachments and database
+storage:
+  data:
+    name: "vaultwarden-data"
+    size: "5Gi"
+    class: "longhorn"
+
+# Admin token - using existing secret
+adminToken:
+  existingSecret: "vaultwarden-admin-token"
+  existingSecretKey: "adminToken"
+
+# Personal LAN settings
+signupsAllowed: false
+signupsVerify: false  # Skip email verification for LAN
+
+# Resource limits
+resources:
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+  requests:
+    memory: "256Mi"
+    cpu: "100m"
+
+# Optional: Enable admin page for easier management
+# Generate secure token with: openssl rand -base64 48

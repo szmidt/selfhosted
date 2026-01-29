@@ -13,7 +13,8 @@ This layer turns your cluster into a fully GitOps-managed platform, enabling rep
 | ------------- |---------------------|-------------------------------------------------|
 | Applications  | `applications/`     | Argo CD Application definitions (per stage)     |
 | Platform Apps | `apps/01-platform/` | Argo CD, cert-manager, Cilium, Longhorn         |
-| Monitoring    | `apps/02-media/`    | Jellyfin, navidrome, sftp client, multiscrobber |
+| Media         | `apps/02-media/`    | Jellyfin, navidrome, sftp client, multiscrobler |
+| Personal      | `apps/03-personal/` | Immich, Vaultwarden                            |
 
 To access services via domain names, you can:
 
@@ -39,6 +40,12 @@ It is recommended to apply the Argo CD Applications in order, as each layer buil
 ```bash
 # 1. Apply platform components
 kubectl apply -f applications/01-platform-bootstrap.yaml
+
+# 2. Apply media components
+kubectl apply -f applications/02-media-bootstrap.yaml
+
+# 3. Apply personal components
+kubectl apply -f applications/03-personal-bootstrap.yaml
 ```
 
 ### Application breakdown
@@ -52,6 +59,10 @@ kubectl apply -f applications/01-platform-bootstrap.yaml
 * `02-media-bootstrap.yaml`
 
   * Adds media services, no explanation needed.
+
+* `03-personal-bootstrap.yaml`
+
+  * Deploys personal services: Immich (photo management) and Vaultwarden (password manager).
 
 ### Secrets 
 
@@ -96,6 +107,33 @@ kubectl create secret generic multiscrobbler-lastfm-creds \
 ```
 
 Replace the placeholder values with your actual Last.fm API key and secret obtained from https://www.last.fm/api/account/create
+
+#### Vaultwarden
+
+Vaultwarden requires two secrets to be created manually: one for the PostgreSQL database and one for the admin token.
+
+1. **Generate a secure admin token:**
+   ```bash
+   openssl rand -base64 48
+   # Example output: jiQ1QYoUSsnJy2532Cq+Bk3AnL3bAEYYpv8tsIyEsY2Kma3LJ6K6d/bRBj+5zO4l
+   ```
+
+2. **Create PostgreSQL user secret:**
+   ```bash
+   kubectl create secret generic vaultwarden-postgres-user \
+     --from-literal=username=vaultwarden \
+     --from-literal=password=YOUR_SECURE_PASSWORD \
+     --namespace personal
+   ```
+
+3. **Create admin token secret:**
+   ```bash
+   kubectl create secret generic vaultwarden-admin-token \
+     --from-literal=adminToken=YOUR_GENERATED_TOKEN_HERE_FROM_STEP_1 \
+     --namespace personal
+   ```
+
+**Important**: Replace `YOUR_SECURE_PASSWORD` with a strong password and `YOUR_GENERATED_TOKEN_HERE` with the token from step 1.
 
 ## Navigation
 
