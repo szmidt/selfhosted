@@ -18,15 +18,16 @@ database:
   port: "5432"
   # Use existing secret instead of plain text
   existingSecret: "vaultwarden-postgres-user"
-  existingSecretUserKey: "username"  # or "DB_USERNAME"
-  existingSecretPasswordKey: "password"  # or "DB_PASSWORD"
+  existingSecretUserKey: "username"
+  existingSecretPasswordKey: "password"
 
-# Storage for attachments and database
+# Storage for attachments only (database is separate)
 storage:
   data:
     name: "vaultwarden-data"
     size: "5Gi"
     class: "longhorn"
+    accessModes: ["ReadWriteOnce"]
 
 # Admin token - using existing secret
 adminToken:
@@ -45,6 +46,3 @@ resources:
   requests:
     memory: "256Mi"
     cpu: "100m"
-
-# Optional: Enable admin page for easier management
-# Generate secure token with: openssl rand -base64 48
