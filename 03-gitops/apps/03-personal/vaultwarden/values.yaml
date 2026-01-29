@@ -9,7 +9,7 @@ service:
   port: 8080
 
 # Domain setting for Tailscale
-domain: "https://vaultwarden"
+domain: "https://vaultwarden.tailce4610.ts.net"
 
 # Database configuration - using CloudNativePG with existing secret
 database:
