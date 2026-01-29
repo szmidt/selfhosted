@@ -31,7 +31,7 @@ adminToken:
   existingSecretKey: "adminToken"
 
 # Personal LAN settings
-signupsAllowed: false
+signupsAllowed: true
 signupsVerify: false  # Skip email verification for LAN
 
 # Resource limits
