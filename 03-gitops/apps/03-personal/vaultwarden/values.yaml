@@ -8,8 +8,8 @@ service:
   type: ClusterIP
   port: 8080
 
-# Domain setting for LAN - use local service address
-domain: "http://vaultwarden.personal.svc.cluster.local:8080"
+# Domain setting for Tailscale
+domain: "https://vaultwarden"
 
 # Database configuration - using CloudNativePG with existing secret
 database:
