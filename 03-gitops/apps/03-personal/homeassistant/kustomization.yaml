@@ -6,7 +6,7 @@ namespace: personal
 helmCharts:
   - name: home-assistant
     repo: http://pajikos.github.io/home-assistant-helm-chart/
-    version: latest
+    version: 0.3.42
     releaseName: home-assistant
     namespace: personal
     valuesFile: values.yaml
