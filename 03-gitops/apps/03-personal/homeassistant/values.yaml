@@ -18,6 +18,7 @@ service:
 # Configuration for Home Assistant behind reverse proxy
 configuration:
   enabled: true
+  forceInit: true
   trusted_proxies:
     - "100.64.0.0/10"  # Tailscale IP range
     - "10.244.0.0/16"  # Kubernetes pod CIDR
