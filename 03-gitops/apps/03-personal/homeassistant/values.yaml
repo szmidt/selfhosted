@@ -1,10 +1,9 @@
 # Persistence for Home Assistant configuration
 persistence:
-  config:
-    enabled: true
-    storageClass: "longhorn"
-    accessMode: ReadWriteOnce
-    size: 5Gi
+  enabled: true
+  storageClass: "longhorn"
+  accessMode: ReadWriteOnce
+  size: 5Gi
 
 # Resource limits
 resources:
