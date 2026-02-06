@@ -33,6 +33,23 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: home-assistant
+  namespace: argocd
+spec:
+  project: personal
+  source:
+    repoURL: https://github.com/szmidt/selfhosted.git
+    targetRevision: main
+    path: 03-gitops/apps/03-personal/homeassistant
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: personal
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: vaultwarden
   namespace: argocd
 spec:
@@ -41,6 +58,23 @@ spec:
     repoURL: https://github.com/szmidt/selfhosted.git
     targetRevision: main
     path: 03-gitops/apps/03-personal/vaultwarden
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: personal
+  syncPolicy:
+    automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: home-assistant
+  namespace: argocd
+spec:
+  project: personal
+  source:
+    repoURL: https://github.com/szmidt/selfhosted.git
+    targetRevision: main
+    path: 03-gitops/apps/03-personal/homeassistant
   destination:
     server: https://kubernetes.default.svc
     namespace: personal

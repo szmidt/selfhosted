@@ -1,0 +1,48 @@
+# Home Assistant configuration
+
+service:
+  type: ClusterIP
+  port: 8123
+
+# Ingress configuration
+ingress:
+  enabled: false
+
+# Persistence for Home Assistant configuration
+persistence:
+  config:
+    enabled: true
+    storageClass: "longhorn"
+    accessMode: ReadWriteOnce
+    size: 5Gi
+
+# Resource limits
+resources:
+  limits:
+    memory: "1Gi"
+    cpu: "500m"
+  requests:
+    memory: "512Mi"
+    cpu: "100m"
+
+# Environment variables
+env:
+  - name: TZ
+    value: "UTC"
+
+# Enable host access for device discovery
+hostNetwork: false
+hostPID: false
+hostIPC: false
+
+# Security context
+securityContext:
+  runAsNonRoot: true
+  runAsUser: 1000
+  runAsGroup: 1000
+  fsGroup: 1000
+
+# Add-ons
+addons:
+  # Enable common add-ons
+  enabled: true
