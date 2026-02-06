@@ -36,7 +36,6 @@ configuration:
         {{- range .Values.configuration.trusted_proxies }}
         - {{ . }}
         {{- end }}
-      base_url: https://tailce4610.ts.net
     # Load frontend themes from the themes folder
     frontend:
       themes: !include_dir_merge_named themes
