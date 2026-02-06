@@ -3,6 +3,9 @@ kind: Kustomization
 
 namespace: personal
 
+resources:
+  - homeassistant-tailscale-ingress.yaml
+
 helmCharts:
   - name: home-assistant
     repo: http://pajikos.github.io/home-assistant-helm-chart/

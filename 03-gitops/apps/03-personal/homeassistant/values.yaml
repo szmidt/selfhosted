@@ -5,6 +5,16 @@ persistence:
   accessMode: ReadWriteOnce
   size: 5Gi
 
+# Ingress configuration - disabled for Tailscale ingress
+ingress:
+  enabled: false
+  external: false
+
+# Service configuration
+service:
+  type: ClusterIP
+  port: 8123
+
 # Resource limits
 resources:
   limits:
