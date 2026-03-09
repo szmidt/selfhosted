@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tracktor
+  namespace: personal
+  labels:
+    app: tracktor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tracktor
+  template:
+    metadata:
+      labels:
+        app: tracktor
+    spec:
+      containers:
+        - name: tracktor
+          image: ghcr.io/javedh-dev/tracktor:latest
+          ports:
+            - containerPort: 3000
+              name: http
+          env:
+            - name: TRACKTOR_DEMO_MODE
+              value: "false"
+            - name: FORCE_DATA_SEED
+              value: "false"
+            - name: CORS_ORIGINS
+              value: "http://tracktor"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: tracktor-data

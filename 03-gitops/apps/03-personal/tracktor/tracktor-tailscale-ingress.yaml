@@ -1,0 +1,15 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: tracktor-tailscale
+  namespace: personal
+spec:
+  ingressClassName: tailscale
+  tls:
+    - hosts:
+        - tracktor
+  defaultBackend:
+    service:
+      name: tracktor
+      port:
+        number: 3000
